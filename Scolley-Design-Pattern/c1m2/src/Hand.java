@@ -12,6 +12,7 @@ public class Hand {
     public void setCardList(Collection<Card> cardList) {
         this.cardList = cardList;
     }
+
     public int size() {
         return cardList.size();
     }

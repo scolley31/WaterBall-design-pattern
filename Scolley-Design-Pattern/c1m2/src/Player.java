@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
-abstract public class Player {
+abstract public class Player implements ExchangeHandFinishListener {
 
     protected String name;
 
@@ -17,7 +18,7 @@ abstract public class Player {
 
     protected Collection<Player> otherPlayers = new HashSet<>();
 
-    protected Collection<Player> exchangee = new HashSet<>();
+    protected Collection<Player> exchangee = new ArrayList<>();
 
     protected Collection<ExchangeHands> exchangeHands = new HashSet<>();
 
@@ -82,15 +83,15 @@ abstract public class Player {
     }
 
     public void takeTurn() {
-//        makeExchangeHandsDecision();
         showCard = showCard();
         if (showCard == null) throw new IllegalArgumentException("Player: "+getName()+" 沒牌了") ;
     }
 
     protected void exchangeHands(Player player) {
+
         addExchangee(player);
         player.addExchangee(this);
-        ExchangeHands newExchangeHands = new ExchangeHands(this, player);
+        ExchangeHands newExchangeHands = new ExchangeHands(this, player,this);
         exchangeHands.add(newExchangeHands);
         player.getExchangeHands().add(newExchangeHands);
 
@@ -123,5 +124,10 @@ abstract public class Player {
 
     public void addPoint() {
         point++;
+    }
+
+    @Override
+    public void removeExchangeHands(ExchangeHands exchangeHands) {
+        this.exchangeHands.remove(exchangeHands);
     }
 }

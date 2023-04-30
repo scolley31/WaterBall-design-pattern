@@ -32,20 +32,28 @@ public class ShowDown {
     }
 
     private void initPlayers() {
-        for (int i = 0; i < PLAYER_NUMBER; i++) {
-            Player player = new AIPlayer();
-            addPlayer(player);
-        }
+
+
+        addPlayer(new AIPlayer());
+        addPlayer(new AIPlayer());
+        addPlayer(new AIPlayer());
+        addPlayer(new AIPlayer());
+
         System.out.println("Already init players, total member is "+players.size());
+        players.forEach(player ->
+                System.out.println("player:" + player.getName() + " Other play size(): "+ player.otherPlayers.size())
+        );
+
     }
 
     private void initDeck() {
         deck = new Deck();
     }
 
-    public void addPlayer(Player player) {
+    private void addPlayer(Player player) {
         players.forEach( p -> {
-                if (players != null) p.otherPlayers.add(player);
+                p.otherPlayers.add(player);
+                player.otherPlayers.add(p);
         });
         players.add(player);
         player.setShowDown(this);
@@ -60,7 +68,9 @@ public class ShowDown {
     }
 
     public void drawCardUntilHandEqualThirteen() {
+
         players.forEach(player -> {
+
             while (player.getHand().size() < HAND_CARD_NUMBER) {
                 Card card = deck.drawCard();
                 player.addHandCard(card);
@@ -72,15 +82,25 @@ public class ShowDown {
             );
             System.out.println("player "+player.getName()+" already draw card");
         });
+
     }
 
     private void showCardToCompareUntilTurnToThirteen() {
+
         while (turn < TURN_NUMBER) {
 
             turn++;
             System.out.println("第 "+turn+" 局遊戲");
 
-            //每個玩家輪流take a turn
+            //每個玩家的exchange hands都設定還沒turnCountDown
+            players.forEach( Player -> {
+                Player.exchangeHands.forEach(ExchangeHands::ieNotTurnCountDown);
+            });
+
+            //每個玩家決定是否要換牌
+            players.forEach(Player::makeExchangeHandsDecision);
+
+            //每個玩家輪流出牌
             players.forEach(Player::takeTurn);
 
             //每個玩家顯示出的牌內容，比大小

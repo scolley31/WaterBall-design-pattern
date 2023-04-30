@@ -1,5 +1,9 @@
 public interface CommandLineInterFace {
 
-    void inputByUser();
+    String inputStringByUser();
+
+    int inputIntByUser();
+
+    boolean inputBooleanByUser();
 
 }
