@@ -7,12 +7,9 @@ public class ExchangeHands {
 
     boolean alreadyTurnCountDown = false;
 
-    ExchangeHandFinishListener exchangeHandFinishListener = null;
-
-    public ExchangeHands(Player exchanger, Player exchangee, ExchangeHandFinishListener listener) {
+    public ExchangeHands(Player exchanger, Player exchangee) {
         this.exchanger = exchanger;
         this.exchangee = exchangee;
-        this.exchangeHandFinishListener = listener;
     }
 
     int turnCountDown = 3;
@@ -28,9 +25,6 @@ public class ExchangeHands {
 
         if (turnCountDown == 0) {
             exchangeHandsBack();
-//            removeExchangeHands();
-        } else if (turnCountDown < 0) {
-            return;
         }
 
         System.out.println("Player exchanger: "+exchanger.getName()+" 與 Player exchangee: "+exchangee.getName()+"的牌，在 "+turnCountDown+" 回合後換回來");
@@ -67,8 +61,7 @@ public class ExchangeHands {
 
     }
 
-    private void removeExchangeHands() {
-        exchangeHandFinishListener.removeExchangeHands(this);
+    public int getTurnCountDown() {
+        return turnCountDown;
     }
-
 }

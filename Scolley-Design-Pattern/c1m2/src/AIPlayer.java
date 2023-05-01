@@ -1,4 +1,6 @@
+import java.util.HashSet;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class AIPlayer extends Player {
 
@@ -20,7 +22,11 @@ public class AIPlayer extends Player {
     @Override
     void makeExchangeHandsDecision() {
 
+        //每回合exchangeHands的倒數回合數減一，並在倒數回合數為零時換回來。
         exchangeHands.forEach(ExchangeHands::turnDown);
+
+        //移除倒數回合數為0的exchangeHands
+        exchangeHands.removeIf( exchangeHands1 -> exchangeHands1.getTurnCountDown() == 0);
 
         //是否已經換過牌
         if (isAlreadyExchangeHands()) return;

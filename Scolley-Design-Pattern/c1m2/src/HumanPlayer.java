@@ -27,6 +27,9 @@ public class HumanPlayer extends Player implements CommandLineInterFace {
 
         exchangeHands.forEach(ExchangeHands::turnDown);
 
+        //移除倒數回合數為0的exchangeHands
+        exchangeHands.removeIf( exchangeHands1 -> exchangeHands1.getTurnCountDown() == 0);
+
         //是否已經換過牌
         if (isAlreadyExchangeHands()) return;
 

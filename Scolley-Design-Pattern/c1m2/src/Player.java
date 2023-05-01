@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
-abstract public class Player implements ExchangeHandFinishListener {
+abstract public class Player {
 
     protected String name;
 
@@ -91,7 +91,7 @@ abstract public class Player implements ExchangeHandFinishListener {
 
         addExchangee(player);
         player.addExchangee(this);
-        ExchangeHands newExchangeHands = new ExchangeHands(this, player,this);
+        ExchangeHands newExchangeHands = new ExchangeHands(this, player);
         exchangeHands.add(newExchangeHands);
         player.getExchangeHands().add(newExchangeHands);
 
@@ -126,8 +126,4 @@ abstract public class Player implements ExchangeHandFinishListener {
         point++;
     }
 
-    @Override
-    public void removeExchangeHands(ExchangeHands exchangeHands) {
-        this.exchangeHands.remove(exchangeHands);
-    }
 }
