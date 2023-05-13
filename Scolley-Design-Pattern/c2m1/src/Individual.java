@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 public class Individual {
 
@@ -50,6 +50,24 @@ public class Individual {
     }
 
     public void addMatchIndividual(Individual matchIndividual) {
+        System.out.println("id = " + this.id + " 與 id = " + matchIndividual.id + " 配對");
         matchIndividuals.add(matchIndividual);
     }
+
+    public int habitBasedMatchCount(Individual individual) {
+
+        int matchHabitCount = 0;
+        HashSet<String> matchHabit = new HashSet<>();
+
+        for (char[] chars : habit) {
+            matchHabit.add(Arrays.toString(chars));
+        }
+
+        for (int i = 0; i < individual.habit.length; i++) {
+            if (matchHabit.contains(Arrays.toString(individual.habit[i]))) matchHabitCount++;
+        }
+
+        return matchHabitCount;
+    }
+
 }

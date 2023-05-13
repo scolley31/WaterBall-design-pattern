@@ -20,6 +20,12 @@ public class ReverseStrategy implements MatchingMakingStrategy{
         List<Individual> sortedIndividuals = matchingMakingStrategy.sortMatchingStrategy(individuals, individual);
         Collections.reverse(sortedIndividuals);
         this.individuals = sortedIndividuals;
+
+        System.out.println("ReverseStrategy");
+        this.individuals.forEach(individual1 -> {
+            System.out.println("id = " + individual1.id);
+        });
+
         return sortedIndividuals;
     }
 

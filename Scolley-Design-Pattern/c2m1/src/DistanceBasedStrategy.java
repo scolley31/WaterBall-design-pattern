@@ -20,8 +20,13 @@ public class DistanceBasedStrategy implements MatchingMakingStrategy {
                         Coord.calculateDistance(otherIndividual.coord, individual.coord)
                 ))
                 .collect(Collectors.toList());
-        Collections.reverse(sortedIndividuals);
         this.individuals = sortedIndividuals;
+
+        System.out.println("DistanceBasedStrategy");
+        this.individuals.forEach(individual1 -> {
+            System.out.println("id = " + individual1.id);
+        });
+
         return sortedIndividuals;
     }
 
