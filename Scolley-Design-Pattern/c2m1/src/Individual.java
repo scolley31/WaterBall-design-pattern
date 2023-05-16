@@ -1,19 +1,18 @@
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
 public class Individual {
 
-    Collection<Individual> matchIndividuals = new HashSet<>();
-    int id;
-    Gender gender;
-    int age;
-    char[] intro;
-    char[][] habit;
-    Coord coord;
+    private Collection<Individual> matchIndividuals = new HashSet<>();
+    private int id;
+    private Gender gender;
+    private int age;
+    private char[] intro;
+    private String[] habit;
+    private Coord coord;
 
-    public Individual(int id, Gender gender, int age, char[] intro, char[][] habit, Coord coord) {
+    public Individual(int id, Gender gender, int age, char[] intro, String[] habit, Coord coord) {
         setId(id);
         setGender(gender);
         setAge(age);
@@ -22,10 +21,23 @@ public class Individual {
         setCoord(coord);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String[] getHabit() {
+        return habit;
+    }
+
+    public Coord getCoord() {
+        return coord;
+    }
+
     public void setId(int id) {
         if (id <= 0) throw new IllegalArgumentException("id要大於0");
         this.id = id;
     }
+
 
     public void setGender(Gender gender) {
         this.gender = gender;
@@ -41,7 +53,7 @@ public class Individual {
         this.intro = intro;
     }
 
-    public void setHabit(char[][] habit) {
+    public void setHabit(String[] habit) {
         this.habit = habit;
     }
 
@@ -52,22 +64,6 @@ public class Individual {
     public void addMatchIndividual(Individual matchIndividual) {
         System.out.println("id = " + this.id + " 與 id = " + matchIndividual.id + " 配對");
         matchIndividuals.add(matchIndividual);
-    }
-
-    public int habitBasedMatchCount(Individual individual) {
-
-        int matchHabitCount = 0;
-        HashSet<String> matchHabit = new HashSet<>();
-
-        for (char[] chars : habit) {
-            matchHabit.add(Arrays.toString(chars));
-        }
-
-        for (int i = 0; i < individual.habit.length; i++) {
-            if (matchHabit.contains(Arrays.toString(individual.habit[i]))) matchHabitCount++;
-        }
-
-        return matchHabitCount;
     }
 
 }

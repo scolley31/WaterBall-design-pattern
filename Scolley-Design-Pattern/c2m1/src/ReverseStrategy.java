@@ -23,7 +23,7 @@ public class ReverseStrategy implements MatchingMakingStrategy{
 
         System.out.println("ReverseStrategy");
         this.individuals.forEach(individual1 -> {
-            System.out.println("id = " + individual1.id);
+            System.out.println("id = " + individual1.getId());
         });
 
         return sortedIndividuals;

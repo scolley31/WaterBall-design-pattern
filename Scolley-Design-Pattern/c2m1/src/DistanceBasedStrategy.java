@@ -15,16 +15,18 @@ public class DistanceBasedStrategy implements MatchingMakingStrategy {
 
     @Override
     public List<Individual> sortMatchingStrategy(Collection<Individual> individuals, Individual individual) {
+        Comparator<Individual> comparing = Comparator.comparingDouble(otherIndividual ->
+                Coord.calculateDistance(otherIndividual.getCoord(), individual.getCoord())
+        );
+
         List<Individual> sortedIndividuals = individuals.stream()
-                .sorted(Comparator.comparingDouble(otherIndividual ->
-                        Coord.calculateDistance(otherIndividual.coord, individual.coord)
-                ))
+                .sorted(comparing.thenComparing(Individual::getId))
                 .collect(Collectors.toList());
         this.individuals = sortedIndividuals;
 
         System.out.println("DistanceBasedStrategy");
         this.individuals.forEach(individual1 -> {
-            System.out.println("id = " + individual1.id);
+            System.out.println("id = " + individual1.getId());
         });
 
         return sortedIndividuals;
