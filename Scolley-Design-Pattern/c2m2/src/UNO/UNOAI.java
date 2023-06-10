@@ -1,12 +1,10 @@
 package UNO;
 
-import TemplateGame.Game;
-
-public class AI extends Player{
+public class UNOAI extends Player{
     @Override
     protected void nameHimself() {
         name = String.valueOf(this.hashCode());
-        System.out.println("AI OldUNO.Player name himself, name is " + name);
+        System.out.println("AI UNO Player name himself, name is " + name);
     }
 
     @Override

@@ -28,6 +28,7 @@ public abstract class Game<Card> {
         players.add(player4);
         player4.setGame(this);
         setHandCardNumber(originHandCardNumber);
+        deck = new Deck<>();
     }
 
     public void start() {
@@ -42,7 +43,8 @@ public abstract class Game<Card> {
 
         needToDoBeforeGame();
 
-        while (isGameOver()) {
+        while (!isGameOver()) {
+            System.out.println("第"+turn+"回合");
             players.forEach(this::takeTurn);
             turn++;
             turnEnd();
@@ -61,6 +63,7 @@ public abstract class Game<Card> {
 
     protected void deckShuffle() {
         deck.shuffle();
+        System.out.println("Deck already shuffle");
     }
 
     protected void setHandCardNumber(int cardNumber) {
@@ -69,10 +72,16 @@ public abstract class Game<Card> {
 
     protected void drawCardUntilHandsCardEqualSpecifiedNumbers() {
         players.forEach(player -> {
-            while (player.getHands().size() < originHandCardNumber) {
+            while (player.getHands().getHandCards().size() < originHandCardNumber) {
                 Card card = deck.drawCard();
                 player.addHandCard(card);
             }
+
+            Collection<Card> cardList = player.getHands().getHandCards();
+            cardList.forEach(card ->
+                    System.out.println("Name :"+player.getName()+" HandCard : "+card)
+            );
+            System.out.println("player "+player.getName()+" already draw card");
         });
     }
 
@@ -82,8 +91,5 @@ public abstract class Game<Card> {
 
     protected abstract boolean isGameOver();
 
-    private void showWinner() {
-        System.out.println("Winner's name " + winner.getName());
-    }
-
+    protected abstract void showWinner();
 }

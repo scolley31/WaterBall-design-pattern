@@ -30,4 +30,7 @@ public class Deck<Card> {
         return cardStack.size();
     }
 
+    public Stack<Card> getCardStack() {
+        return cardStack;
+    }
 }
