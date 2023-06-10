@@ -42,6 +42,7 @@ public class UNO extends Game<Card> {
 
     @Override
     protected void takeTurn(AbstractPlayer<Card> player) {
+        System.out.println("cardOnTable = "+cardOnTable);
         if (canShowCard(player)) {
             alreadyShowCardStack.add(cardOnTable);
             cardOnTable = player.showCard();
