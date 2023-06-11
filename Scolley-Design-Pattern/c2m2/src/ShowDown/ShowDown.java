@@ -1,6 +1,7 @@
 package ShowDown;
 
 import TemplateGame.AbstractPlayer;
+import TemplateGame.Deck;
 import TemplateGame.Game;
 
 import java.util.Comparator;
@@ -32,11 +33,6 @@ public class ShowDown extends Game<Card> {
                 System.out.println("Card = "+card)
         );
         System.out.println("ShowDown.Deck already init");
-    }
-
-    @Override
-    protected void needToDoBeforeGame() {
-        // TODO
     }
 
     @Override

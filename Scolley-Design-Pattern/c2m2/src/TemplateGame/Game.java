@@ -28,7 +28,6 @@ public abstract class Game<Card> {
         players.add(player4);
         player4.setGame(this);
         setHandCardNumber(originHandCardNumber);
-        deck = new Deck<>();
     }
 
     public void start() {
@@ -53,7 +52,7 @@ public abstract class Game<Card> {
         showWinner();
     }
 
-    protected abstract void turnEnd();
+    protected void turnEnd() {};
 
     private void playersNameThemSelves(AbstractPlayer<Card> player) {
         player.nameHimself();
@@ -85,7 +84,7 @@ public abstract class Game<Card> {
         });
     }
 
-    protected abstract void needToDoBeforeGame();
+    protected void needToDoBeforeGame(){};
 
     protected abstract void takeTurn(AbstractPlayer<Card> player);
 

@@ -1,6 +1,7 @@
 package UNO;
 
 import TemplateGame.AbstractPlayer;
+import TemplateGame.Deck;
 import TemplateGame.Game;
 
 public class UNO extends Game<Card> {
@@ -12,11 +13,6 @@ public class UNO extends Game<Card> {
     }
 
     @Override
-    protected void turnEnd() {
-
-    }
-
-    @Override
     protected void addCardsToDeck() {
         for (Color color : Color.values()) {
             for (Number number : Number.values()) {
@@ -24,10 +20,6 @@ public class UNO extends Game<Card> {
                 deck.addCard(card);
             }
         }
-        deck.getCardStack().forEach( card ->
-                System.out.println("Card = "+card)
-        );
-        System.out.println("UNO.Deck already init");
     }
 
     public Card getCardOnTable() {
