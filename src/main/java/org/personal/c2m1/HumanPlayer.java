@@ -11,7 +11,6 @@ public class HumanPlayer extends Player {
 		playerHandCard.push(deck.drawCard(deck));
 		return playerHandCard;
 	}
-	public Stack<Card> getHandCard() {
-		return this.handCard;
-	}
+
+
 }

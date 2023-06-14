@@ -10,8 +10,8 @@ public class Card implements Comparable<Card>{
 	 * the class, which you will need to do to initialize your deck of cards.
 	 * See A1Help.java for a demo of this.
 	 */
-	enum Suit {SPADES, HEARTS, DIAMONDS, CLUBS;}
-	enum Rank {	TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE;}
+	enum Suit {SPADES, HEARTS, DIAMONDS, CLUBS}
+	enum Rank {TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE}
 	private Rank rank;//階級 (Rank)
 	private Suit suit;//花色 (Suit)
 

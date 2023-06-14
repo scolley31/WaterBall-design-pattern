@@ -13,7 +13,6 @@ public abstract class Player  {
 	protected String Name ;
 
 
-
 	public Player() {
 		handCard = new Stack<Card>();
 		point=0;
@@ -22,6 +21,9 @@ public abstract class Player  {
 	}
 
 	public abstract Stack<Card> drawCard(Deck deck,Stack<Card> playerHandCard);
+	public void setHandCard(Stack<Card> handCard) {
+		this.handCard = handCard;
+	}
 
 	public Stack<Card> getHandCard() {
 		return handCard;

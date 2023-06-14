@@ -38,7 +38,7 @@ public class Main {
 				player.drawCard(deck,playerHandCard); //抽牌'
 			//player.getHand().stream().forEach(System.out::print);
 			}
-			System.out.println(deck.getDeck().size());
+
 		}
 	}
 
