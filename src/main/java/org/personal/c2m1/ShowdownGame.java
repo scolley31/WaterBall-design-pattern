@@ -1,5 +1,8 @@
 package org.personal.c2m1;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,15 +28,44 @@ public class ShowdownGame {
 	public void start(List<Player> players) {
 		players.stream().forEach(player -> createPlayerName(player));
 	}
-	public void play(List<Player> players) {
+	//P1~P4 輪流 (Takes a turn) 依序執行以下：
+	public void play(Player player) {
+		Boolean isUsedPrivilege = isUsedPrivilege(player);
+		if(isUsedPrivilege && player.exchangeHandsPrivilege>0){
+			player.exchangeHandsPrivilege=0;
 
+		}else {
+
+		}
+	}
+
+	private Boolean isUsedPrivilege(Player player) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println(player.getName()+"，是否使用「交換手牌 (Exchange Hands)」:Y/N");
+		String privilegeUsed = "N";
+		try {
+			privilegeUsed = br.readLine();
+			while (!(privilegeUsed.matches("(?i)^(?:y|n|Y|N)$"))){
+				System.out.println("請輸入Y or N .");
+				privilegeUsed = br.readLine();
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		return "y".equalsIgnoreCase(privilegeUsed)?Boolean.TRUE :Boolean.FALSE;
 	}
 
 	public void scorePoint(List<Player> players) {
 
 	}
+	//a玩家選擇要與哪位玩家（自己以外）交換手牌。
+	//b選擇後，雙方的手牌交換。
+	//c三回合後，雙方的手牌會交換回來。
+	private	void exchangeHands() {
 
-		private	void createPlayerName(Player player) {
+	}
+
+	private	void createPlayerName(Player player) {
 //		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //		System.out.println("請為自己取名 (Name himself):");
 //		String sName = "";

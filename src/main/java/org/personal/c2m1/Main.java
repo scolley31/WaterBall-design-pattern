@@ -20,6 +20,7 @@ public class Main {
 		for(int j=1; j <= game.getRound(); j++){
 			for (Player player : players){
 				//決定要不要使用 「交換手牌 (Exchange Hands)」 特權，參見需求 5。
+				game.play(player);
 				//出 (S how) 一張牌（此步驟彼此皆無法知曉彼此出的牌）。
 			}
 		}
