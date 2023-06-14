@@ -6,13 +6,15 @@ import java.util.Stack;
 
 public class AIPlayer extends Player{
 
-	private Stack<Card> handCard;
-
 	public AIPlayer() {
-		handCard=new Stack<>();
+		super();
 	}
 	//直到所有人都擁有手牌 (Hand) 13 張牌為止。
-	public void drawCard(Deck deck) {
-		handCard.push(deck.drawCard(deck));
+	public Stack<Card> drawCard(Deck deck,Stack<Card> playerHandCard) {
+		playerHandCard.push(deck.drawCard(deck));
+		return playerHandCard;
+	}
+	public Stack<Card> getHandCard() {
+		return this.handCard;
 	}
 }

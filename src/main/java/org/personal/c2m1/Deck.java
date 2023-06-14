@@ -30,7 +30,7 @@ public class Deck {
 	}
 
 	public Card drawCard(Deck deck){
-		return deck.getDeck().stream().findAny().get();
+		return deck.getDeck().pop();
 	}
 	//牌堆會進行洗牌 (Shuffle)。
 	public void shuffle(){
