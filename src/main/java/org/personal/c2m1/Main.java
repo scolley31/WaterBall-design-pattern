@@ -17,11 +17,15 @@ public class Main {
 		//b.抽牌階段:直到所有人都擁有手牌 (Hand) 13 張牌為止。
 		drawCard(players, deck);
 		//c.抽完牌後，在接下來的 13 回合中，每一回合依序執行以下：
-		for(int j=1; j <= game.getRound(); j++){
+		for(int round=1; round < game.getTotalAound(); round++){
 			for (Player player : players){
 				//決定要不要使用 「交換手牌 (Exchange Hands)」 特權，參見需求 5。
-				game.play(player);
 				//出 (S how) 一張牌（此步驟彼此皆無法知曉彼此出的牌）。
+				//顯示 P1~P4 各出的牌的內容。
+				Card card=game.play(player, round);
+				System.out.println(player.getName()+"出的牌的內容:"+card);
+				//將 P1~P4 出的牌進行比大小決勝負，將最勝者的分數(Point)加一。
+
 			}
 		}
 
