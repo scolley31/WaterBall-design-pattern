@@ -1,8 +1,5 @@
 package org.personal.c2m1;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Stack;
 
 public class AIPlayer extends Player{

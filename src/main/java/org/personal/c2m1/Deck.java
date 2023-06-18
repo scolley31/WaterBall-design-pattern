@@ -1,8 +1,6 @@
 package org.personal.c2m1;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Stack;
 import org.personal.c2m1.Card.Rank;
 import org.personal.c2m1.Card.Suit;

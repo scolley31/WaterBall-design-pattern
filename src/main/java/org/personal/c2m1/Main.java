@@ -23,16 +23,10 @@ public class Main {
 				//出 (S how) 一張牌（此步驟彼此皆無法知曉彼此出的牌）。
 				//顯示 P1~P4 各出的牌的內容。
 				Card card=game.play(player, round);
-				System.out.println(player.getName()+"出的牌的內容:"+card);
+				System.out.println("回合:"+round+","+player.getName()+"出的牌的內容:"+card);
 				//將 P1~P4 出的牌進行比大小決勝負，將最勝者的分數(Point)加一。
-
 			}
 		}
-
-
-
-
-
 	}
 
 	private static void drawCard(List<Player> players, Deck deck) {
@@ -42,7 +36,6 @@ public class Main {
 				player.drawCard(deck,playerHandCard); //抽牌'
 			//player.getHand().stream().forEach(System.out::print);
 			}
-
 		}
 	}
 
