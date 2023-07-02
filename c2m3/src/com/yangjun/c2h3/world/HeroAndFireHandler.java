@@ -1,4 +1,4 @@
-package c2h3.world;
+package com.yangjun.c2h3.world;
 
 public class HeroAndFireHandler extends CollisionHandler {
 
@@ -21,7 +21,7 @@ public class HeroAndFireHandler extends CollisionHandler {
 		
 		hero.decreaseHp(10);
 		if (hero.isDead()) {
-			world.removeSprite(s2);
+			world.removeSprite(hero);
 		}
 		world.removeSprite(fire);
 	}

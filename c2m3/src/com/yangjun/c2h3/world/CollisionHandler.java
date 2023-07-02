@@ -1,4 +1,4 @@
-package c2h3.world;
+package com.yangjun.c2h3.world;
 
 public abstract class CollisionHandler {
 	CollisionHandler nextHandler;

@@ -1,10 +1,10 @@
-package c2h3.world;
+package com.yangjun.c2h3.world;
 
 public class Hero extends Sprite {
 	private int hp;
 	
 	public Hero(int coordinate, int hp) {
-		super(coordinate);
+		super(coordinate, 'H');
 		this.hp = hp;
 	}
 
@@ -28,10 +28,5 @@ public class Hero extends Sprite {
 	        System.out.println("Hero died.");
 	    }
 	    return dead;
-	}
-	
-	@Override
-	public String toString() {
-		return "H";
 	}
 }

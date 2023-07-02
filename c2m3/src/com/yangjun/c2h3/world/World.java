@@ -1,6 +1,6 @@
-package c2h3.world;
+package com.yangjun.c2h3.world;
 
-import static c2h3.world.Util.*;
+import static com.yangjun.c2h3.world.Util.*;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -64,15 +64,13 @@ public class World {
 		world[sprite.getCoordinate()] = null;
 	}
 	
-
-    
     public void printWorld() {
 		StringBuilder spriteRepresentation = new StringBuilder();
 		StringBuilder numberRepresentation = new StringBuilder();
 		for (int i = 0; i < world.length; i++) {
 			numberRepresentation.append("(").append(i).append(")" );
 	        int paddingLength = i >= 10 ? 4 : 3;
-			spriteRepresentation.append(centerPadding(world[i] == null ? "_" : world[i].toString(), paddingLength));
+			spriteRepresentation.append(centerPadding(world[i] == null ? "_" : String.valueOf(world[i].getShowChar()), paddingLength));
 		}
 		System.out.println(spriteRepresentation.toString());
 		System.out.println(numberRepresentation.toString());

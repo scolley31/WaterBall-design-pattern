@@ -1,4 +1,4 @@
-package c2h3.world;
+package com.yangjun.c2h3.world;
 
 import java.util.Arrays;
 
@@ -8,10 +8,9 @@ public class Util {
     }
     
     public static String getCollisionCondition(Sprite s1, Sprite s2) {
-        String condition = s1.toString() + s2.toString();
-        char[] StringtoChar = condition.toCharArray();
-        Arrays.sort(StringtoChar);
-        return new String(StringtoChar);
+        char[] charArr = new char[] {s1.getShowChar(), s2.getShowChar()};
+        Arrays.sort(charArr);
+        return new String(charArr);
     }
     
     public static String rightPadding(String str, int length) {
