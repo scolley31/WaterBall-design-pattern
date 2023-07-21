@@ -31,44 +31,50 @@ public class World implements CommandLine {
 
     public void moveSprite(int x1, int x2) {
 
-        if (Arrays.stream(coords).allMatch(coord -> coord.x != x1)) {
-            System.out.println("沒有這個 " + x1 + " 這個位置");
-            start();
-            return;
-        }
-        if (Arrays.stream(coords).allMatch(coord -> coord.x != x2)) {
-            System.out.println("沒有這個 " + x2 + " 這個位置");
-            start();
-            return;
-        }
+        if (checkPositionExist(x1)) return;
+        if (checkPositionExist(x2)) return;
 
-        Sprite spriteInX1 = Arrays.stream(sprites)
-                .filter(sprite -> sprite.getCoord().x == x1)
-                .findFirst()
-                .orElse(null);
+        Sprite spriteInX1 = getSprite(x1);
 
-        if (spriteInX1 == null) {
-            System.out.println("這個位置 " + x1 + " 沒有生命");
-            start();
-            return;
-        }
+        if (!isExistSprite(x1, spriteInX1)) return;
 
-        Sprite spriteInX2 = Arrays.stream(sprites)
-                .filter(sprite -> sprite.getCoord().x == x2)
-                .findFirst()
-                .orElse(null);
+        Sprite spriteInX2 = getSprite(x2);
 
-        if (spriteInX2 == null) {
-            System.out.println("這個位置 " + x2 + " 沒有生命");
-            spriteInX1.move(coords[x2]);
-            showSprites();
-        } else {
+        if (isExistSprite(x2, spriteInX2))  {
             System.out.println("這個位置 " + x2 + " 有生命，確認碰撞處理。");
             collisionHandler.handle(spriteInX1, spriteInX2);
+            showSprites();
+        } else {
+            spriteInX1.move(coords[x2]);
             showSprites();
         }
 
         start();
+    }
+
+    private boolean isExistSprite(int x1, Sprite spriteInX1) {
+        if (spriteInX1 == null) {
+            System.out.println("這個位置 " + x1 + " 沒有生命");
+            start();
+            return false;
+        }
+        return true;
+    }
+
+    private Sprite getSprite(int x1) {
+        return Arrays.stream(sprites)
+                .filter(sprite -> sprite.getCoord().x == x1)
+                .findFirst()
+                .orElse(null);
+    }
+
+    private boolean checkPositionExist(int x1) {
+        if (Arrays.stream(coords).allMatch(coord -> coord.x != x1)) {
+            System.out.println("沒有這個 " + x1 + " 這個位置");
+            start();
+            return true;
+        }
+        return false;
     }
 
 

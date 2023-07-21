@@ -1,6 +1,5 @@
 package org.example.Handler;
 
-import org.example.World.Hero;
 import org.example.World.Sprite;
 import org.example.World.World;
 
@@ -19,19 +18,18 @@ abstract public class CollisionHandler {
 
     public void handle(Sprite c1, Sprite c2) {
         if (match(c1, c2)) {
-            if (c1 instanceof Hero) {
-                doHandle(c1, c2);
-                collisionEffect((Hero) c1, c2);
-            } else {
-                doHandle(c2, c1);
-            }
+            doHandle(c1, c2);
+            move(c1, c2);
+        } else if (match(c2, c1)) {
+            doHandle(c2, c1);
+            move(c1, c2);
         } else {
             next.setWorld(this.world);
             next.handle(c1, c2);
         }
     }
 
-    protected void collisionEffect(Hero c1, Sprite c2){};
+    protected void move(Sprite c1, Sprite c2) {}
 
     protected abstract Boolean match(Sprite c1, Sprite c2);
 
