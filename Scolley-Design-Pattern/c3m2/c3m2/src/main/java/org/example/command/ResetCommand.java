@@ -1,30 +1,23 @@
 package org.example.command;
 
-import org.example.Button;
-import org.example.MainController;
-
-import java.util.HashMap;
+import org.example.Keyboard;
 
 public class ResetCommand implements Command {
 
-    private final MainController mainController;
+    private final Keyboard keyboard;
 
-    private final HashMap<Button, Command> commandHashMap = new HashMap<>();
-
-    public ResetCommand(MainController mainController) {
-        this.mainController = mainController;
+    public ResetCommand(Keyboard keyboard) {
+        this.keyboard = keyboard;
     }
 
     @Override
     public void execute() {
-        HashMap<Button, Command> commands = mainController.getCommandHashMap();
-        commandHashMap.putAll(commands);
-        mainController.resetButton();
+        keyboard.resetButton();
     }
 
     @Override
     public void undo() {
-        mainController.undoResetButton(commandHashMap);
+        keyboard.undoResetButton();
     }
 
     @Override

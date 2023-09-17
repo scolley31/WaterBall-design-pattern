@@ -18,7 +18,9 @@ public class Macro implements Command {
 
     @Override
     public void undo() {
-        commandList.forEach(Command::undo);
+        for (int i = commandList.size() - 1; i >= 0; i--) {
+           commandList.get(i).undo();
+        }
     }
 
     @Override
