@@ -119,7 +119,7 @@ public class Game {
 
                 // 每經過一回合增加交換手牌的回合數
                 ArrayList<ExchangeHands> copyExchangeHands = new ArrayList<>(this.exchangeHands);
-                Boolean printLine = false;
+                boolean printLine = false;
                 for (int i = copyExchangeHands.size() - 1; i >= 0; i--) {
                     ExchangeHands exchangeHands = copyExchangeHands.get(i);
                     exchangeHands.increaseRound();
