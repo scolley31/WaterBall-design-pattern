@@ -18,6 +18,16 @@ public class Game {
 
 
     public void start() {
+        decidePlayers();
+        nameThemselves();
+        printGameRule();
+        deckShuffle();
+        drawCards();
+        playRound();
+        gameOver();
+    }
+
+    private void decidePlayers() {
         System.out.println("【系統】歡迎來到撲克牌比大小遊戲(Showdown)，這款遊戲支援 4 位玩家，在遊戲開始之前，請先決定玩家的數量。");
 
         // 決定真實玩家與電腦玩家人數
@@ -50,14 +60,18 @@ public class Game {
                 players.add(new AIPlayer(this, id));
             }
         }
+    }
 
+    private void nameThemselves() {
         System.out.println();
         System.out.println("=============== 玩家命名階段 ===============");
         System.out.println("【系統】在遊戲正式開始之前，請每位玩家替自己命名");
         for (Player player : players) {
             player.nameSelf();
         }
+    }
 
+    private void printGameRule() {
         System.out.println();
         System.out.println("=============== 遊戲規則說明 ===============");
         System.out.println("【系統】接著為各位說明比賽規則，在之後的 13 回合之內，請每位玩家輪流出牌，在出牌之前可以決定要不要將手上所有的牌與其他玩家交換。");
@@ -72,12 +86,16 @@ public class Game {
 
         System.out.print("\n按下 Enter 鍵繼續...");
         scanner.nextLine();
+    }
 
+    private void deckShuffle() {
         System.out.println();
         System.out.println("=============== 洗牌階段 ===============");
         System.out.println("【系統】首先，為了遊戲的公平性，系統會將撲克牌徹底進行洗牌。");
         deck.shuffle();
+    }
 
+    private void drawCards() {
         System.out.println();
         System.out.println("=============== 抽牌階段 ===============");
         System.out.println("【系統】接下來請每位玩家輪流從牌堆中抽牌，直到手上的手牌擁有 13 張為止。");
@@ -98,7 +116,9 @@ public class Game {
             player.sortHands();
             player.describeEmotion(Player.Action.DRAW);
         }
+    }
 
+    private void playRound() {
         try {
             for (round = 1; round <= 13; round++) {
                 System.out.println();
@@ -178,7 +198,9 @@ public class Game {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    private void gameOver() {
         try {
             System.out.println();
             System.out.println("=============== 結算階段 ===============");
